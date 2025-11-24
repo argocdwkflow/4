@@ -1,0 +1,19 @@
+
+
+Hello Team,
+
+Following our investigation, we identified that several crypto_LUKS volumes failed to mount because the underlying RAID0 array (md1) experienced a temporary disk disconnection.
+iDRAC reports clearly show:
+
+“Drive 4 is removed from disk drive bay 1”
+“Drive 4 is installed in disk drive bay 1”
+
+This brief SAS link loss caused multiple Buffer I/O errors on dm-36 and other dm-crypt devices. As a result, several encrypted volumes became inactive and could not be recovered online.
+
+Because the entire storage stack (RAID0 → dm-crypt → filesystem) is impacted, a server reboot is required to reload all device-mapper tables, reinitialize dm-crypt, and restore the mount points cleanly.
+
+Please proceed with a reboot during the next available maintenance window.
+
+Thanks for your support.
+
+Regards,
